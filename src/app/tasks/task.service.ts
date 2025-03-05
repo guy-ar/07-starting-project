@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core";
-import { Task } from "./task.model";
+import { Task, TaskStatus } from "./task.model";
 
 @Injectable({
   providedIn: "root"
@@ -15,5 +15,17 @@ export class TaskService {
             status: 'OPEN'
         };
         this.tasks.update(oldTasks => [...oldTasks, newTask]); // update the signal as a copy of existing array + new task
+    }
+
+    updateTaskStatus(taskId: string, newStatus: TaskStatus) {
+        this.tasks.update(oldTasks => oldTasks.map(task => { // map is a built in function that operates on array and produce a new array
+            if(task.id === taskId) {
+                return {
+                    ...task, // copy the old task
+                    status: newStatus
+                };
+            }
+            return task; // if not changed return the task as it is
+        }))
     }
 }
