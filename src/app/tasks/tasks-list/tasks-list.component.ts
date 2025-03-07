@@ -2,7 +2,8 @@ import { TaskStatus } from './../task.model';
 import { Component, computed, inject, signal } from '@angular/core';
 
 import { TaskItemComponent } from './task-item/task-item.component';
-import { TaskService } from '../task.service';
+//import { TaskService } from '../task.service';
+import { TaskServiceToken } from '../../../main';
 
 @Component({
   selector: 'app-tasks-list',
@@ -14,7 +15,8 @@ import { TaskService } from '../task.service';
 export class TasksListComponent {
   private selectedFilter = signal<string>('all');
   
-  private taskService = inject(TaskService);
+//  private taskSer/vice = inject(TaskService);
+  private taskService = inject(TaskServiceToken);
   //tasks = this.taskService.allTasks;
   tasks = computed(() => { // will be called whenever the selectedFilter signal changes or the allTasks signal changes
     switch (this.selectedFilter()) {
