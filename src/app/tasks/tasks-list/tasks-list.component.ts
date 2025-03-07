@@ -1,4 +1,4 @@
-import { TaskStatus } from './../task.model';
+import { TASK_STATUS_OPEN, TaskStatus, TaskStatusOptions } from './../task.model';
 import { Component, computed, inject, signal } from '@angular/core';
 
 import { TaskItemComponent } from './task-item/task-item.component';
@@ -11,6 +11,9 @@ import { TaskServiceToken } from '../../../main';
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.css',
   imports: [TaskItemComponent],
+  providers: [{
+    provide: TASK_STATUS_OPEN,
+    useValue: TaskStatusOptions}], // this is custom token that will be used by the element injector 
 })
 export class TasksListComponent {
   private selectedFilter = signal<string>('all');
