@@ -9,6 +9,6 @@ import { TaskService } from './task.service';
   standalone: true,
   templateUrl: './tasks.component.html',
   imports: [NewTaskComponent, TasksListComponent], // these "chilkd components" have access to the same instance of the service
-  providers: [TaskService], // inseted injectable by root - this is element injector
+  //providers: [TaskService], // inseted injectable by root - this is element injector
 })
 export class TasksComponent {}
