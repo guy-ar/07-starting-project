@@ -2,7 +2,7 @@ import { TaskService } from './../../task.service';
 import { Component, computed, inject, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { Task, TaskStatus } from '../../task.model';
+import { Task, TASK_STATUS_OPEN, TaskStatus } from '../../task.model';
 import { TaskServiceToken } from '../../../../main';
 
 @Component({
@@ -16,6 +16,7 @@ export class TaskItemComponent {
   //taskService = inject(TaskService);
   taskService = inject(TaskServiceToken);
   task = input.required<Task>();
+  taskStatusOptipoins = inject(TASK_STATUS_OPEN);
   taskStatus = computed(() => {
     switch (this.task().status) {
       case 'OPEN':
